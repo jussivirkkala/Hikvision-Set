@@ -12,7 +12,8 @@ using System.Windows.Forms;
 
 /**
  * @jussivirkkala
- * 2020-11-10 1.0.1 
+ * 2020-11-10 1.0.1 git
+ * 
  * 2020-11-08 1.0.0 .NET 4.5.2, allow unsafe code, Platform x64
  * 
  */
