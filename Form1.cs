@@ -93,6 +93,7 @@ namespace HIK_Set
         {
             label1.Text = "";
             label1.Text += "Cam1";
+            label1.Text += "Cam1:";
             radioButton1.Enabled = false;
             radioButton2.Enabled = false;
             radioButton3.Enabled = false;
@@ -100,6 +101,7 @@ namespace HIK_Set
             DVRIPAddress = "192.168.106.5";
             Preset(DVRIPAddress);
             label1.Text += " Cam2";
+            label1.Text += " Cam2:";
             DVRIPAddress = "192.168.106.6";
             Preset(DVRIPAddress);
             radioButton1.Enabled = true;
@@ -157,15 +159,14 @@ namespace HIK_Set
             m_lUserID = CHCNetSDK.NET_DVR_Login_V30(DVRIPAddress, DVRPortNumber, DVRUserName, DVRPassword, ref DeviceInfo);
             if (m_lUserID < 0)
             {
-                label1.Text += ", login err";
             }
             else
             {
                 if (!CHCNetSDK.NET_DVR_PTZPreset_Other(m_lUserID, 1, CHCNetSDK.GOTO_PRESET, (UInt32)(PreSetNo)))
-                    label1.Text += ", set err";
+                    label1.Text += " set err";
                 else
                 {
-                    label1.Text += ", ok";
+                    label1.Text += " ok";
                //     PreSetNo = 46;
                  //   if (!CHCNetSDK.NET_DVR_PTZPreset_Other(m_lUserID, 1, CHCNetSDK.GOTO_PRESET, (UInt32)(PreSetNo)))
                    //     label1.Text += ", 46";
