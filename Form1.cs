@@ -7,13 +7,15 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /**
  * @jussivirkkala
+ * 2020-11-12 1.0.3 Application already running
+ * 2020-11-10 1.0.2 opacity
  * 2020-11-10 1.0.1 git
- * 
  * 2020-11-08 1.0.0 .NET 4.5.2, allow unsafe code, Platform x64
  * 
  */
@@ -21,6 +23,7 @@ using System.Windows.Forms;
 
 namespace HIK_Set
 {
+
     public partial class Form1 : Form
     {
         // On top
@@ -56,6 +59,7 @@ namespace HIK_Set
             }
         }
 
+
         [STAThread]
         static void Main()
         {
@@ -68,8 +72,8 @@ namespace HIK_Set
         {
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
             this.Text = System.Diagnostics.Process.GetCurrentProcess().ProcessName; // + " " + Application.ProductVersion; //  FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion; //  . Assembly.GetEntryAssembly().GetName().Version; //. System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            
-            radioButton3.Checked = true;
+            this.Opacity = .95;
+            // radioButton3.Checked = true;
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
 
         }
@@ -77,14 +81,14 @@ namespace HIK_Set
        
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            PreSetNo = 46;
-            SendPreset();
-
+  //          PreSetNo = 46;
+//            SendPreset();
+            radioButton3.Checked = true;
             //MessageBox.Show("a");
             //e.Cancel = true;
         }
 
-
+        
             private void SendPreset()
         {
             label1.Text = "";
