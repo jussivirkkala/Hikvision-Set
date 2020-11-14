@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -13,6 +14,7 @@ using System.Windows.Forms;
 
 /**
  * @jussivirkkala
+ * 2020-11-13 Remove ..\
  * 2020-11-12 1.0.3 Application already running
  * 2020-11-10 1.0.2 opacity
  * 2020-11-10 1.0.1 git
@@ -67,18 +69,43 @@ namespace HIK_Set
         }
 
 
+//        https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to?pivots=dotnet-5-0
 
-        private void Form1_Load(object sender, EventArgs e)
+        public class Settings
         {
+            public string Summary { get; set; } = "192.168.1.0";
+            public string SummaryField;
+        }
+            private void Form1_Load(object sender, EventArgs e)
+        {
+
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
             this.Text = System.Diagnostics.Process.GetCurrentProcess().ProcessName; // + " " + Application.ProductVersion; //  FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion; //  . Assembly.GetEntryAssembly().GetName().Version; //. System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Opacity = .95;
             // radioButton3.Checked = true;
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
+            string appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+
+            if (!File.Exists(this.Text + ".ini"))
+            {
+                MessageBox.Show("Missing "+appName+".ini", appName);
+                }
+                else
+                {
+                    foreach (string line in File.ReadLines(this.Text + ".ini"))
+                    {
+                        if (!line.StartsWith("#"))
+                        {
+                            MessageBox.Show(line);
+                        }
+                    }
+
+                }
+            
 
         }
 
-       
+
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
   //          PreSetNo = 46;
@@ -145,6 +172,18 @@ namespace HIK_Set
             }
         }
 
+        void Log(string s)
+        {
+            try { 
+            using (StreamWriter sw = File.AppendText("log.txt"))
+            {
+                sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd-THH:mm:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName+"\t"+s);
+            }
+            }
+            catch
+            { }
+
+        }
         private void Preset(string DVRIPAddress)
         { 
             Int16 DVRPortNumber = Int16.Parse("8000");
@@ -158,6 +197,7 @@ namespace HIK_Set
             if (m_lUserID < 0)
             {
                 label1.Text += " login err";
+                Log("login err");
             }
             else
             {
@@ -169,6 +209,7 @@ namespace HIK_Set
                //     PreSetNo = 46;
                  //   if (!CHCNetSDK.NET_DVR_PTZPreset_Other(m_lUserID, 1, CHCNetSDK.GOTO_PRESET, (UInt32)(PreSetNo)))
                    //     label1.Text += ", 46";
+
 
                 }
 
