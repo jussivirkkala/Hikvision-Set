@@ -16,14 +16,12 @@ namespace HIK_Set
         [STAThread]
         static void Main()
         {
-
             string appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             bool createdNew;
             mutex = new Mutex(true, appName, out createdNew);
             if (!createdNew)
             {
                 MessageBox.Show("Already running",appName);
-                //app is already running! Exiting the application  
                 return;
             }
 
