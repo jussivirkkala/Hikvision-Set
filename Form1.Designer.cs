@@ -55,7 +55,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 23);
+            this.radioButton1.Location = new System.Drawing.Point(10, 20);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(72, 29);
             this.radioButton1.TabIndex = 0;
@@ -67,7 +67,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(115, 23);
+            this.radioButton2.Location = new System.Drawing.Point(100, 20);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(82, 29);
             this.radioButton2.TabIndex = 1;
@@ -79,7 +79,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(230, 23);
+            this.radioButton3.Location = new System.Drawing.Point(200, 20);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(78, 29);
             this.radioButton3.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Checked = true;
-            this.radioButton4.Location = new System.Drawing.Point(356, 23);
+            this.radioButton4.Location = new System.Drawing.Point(300, 20);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(76, 29);
             this.radioButton4.TabIndex = 0;
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 109);
+            this.ClientSize = new System.Drawing.Size(541, 109);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton3);
