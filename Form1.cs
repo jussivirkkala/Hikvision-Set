@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 /**
  * @jussivirkkala
- * 2020-11-13 Remove ..\
+ * 2020-11-13 Remove ..\bin from CHCNetSDK
  * 2020-11-12 1.0.3 Application already running
  * 2020-11-10 1.0.2 opacity
  * 2020-11-10 1.0.1 git
@@ -48,9 +48,6 @@ namespace HIK_Set
         CHCNetSDK.REALDATACALLBACK RealData = null;
         public CHCNetSDK.NET_DVR_PTZPOS m_struPtzCfg;
 
-     //   private System.ComponentModel.Container components = null;
-
-
         public Form1()
         {
             InitializeComponent();
@@ -71,21 +68,19 @@ namespace HIK_Set
 
 //        https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to?pivots=dotnet-5-0
 
-        public class Settings
+        private void Form1_Load(object sender, EventArgs e)
         {
-            public string Summary { get; set; } = "192.168.1.0";
-            public string SummaryField;
-        }
-            private void Form1_Load(object sender, EventArgs e)
-        {
-
+            // Always on top
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
-            this.Text = System.Diagnostics.Process.GetCurrentProcess().ProcessName; // + " " + Application.ProductVersion; //  FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion; //  . Assembly.GetEntryAssembly().GetName().Version; //. System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            this.Opacity = .95;
-            // radioButton3.Checked = true;
-            this.FormClosing += new FormClosingEventHandler(Form1_Closing);
             string appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            this.Text = appName;
+            this.Opacity = .95;
 
+            // On closing event
+            this.FormClosing += new FormClosingEventHandler(Form1_Closing);
+
+
+            // Load file
             if (!File.Exists(this.Text + ".ini"))
             {
                 MessageBox.Show("Missing "+appName+".ini", appName);
