@@ -27,6 +27,7 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 # [Bb]in/
+[P]ublish/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
@@ -354,3 +355,5 @@ MigrationBackup/
 bin/KameraSäätö-1.0.exe
 bin/KameraSäätö-1.0.ini
 bin/log.txt
+bin/HIK-Set.exe.manifest
+bin/HIK-Set.application
