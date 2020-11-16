@@ -17,12 +17,11 @@ using System.Windows.Forms;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  * 
- * 2020-11-13 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log
+ * 2020-11-16 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log
  * 2020-11-12 1.0.3 Application already running
  * 2020-11-10 1.0.2 opacity
  * 2020-11-10 1.0.1 git
  * 2020-11-08 1.0.0 .NET 4.5, allow unsafe code, Platform x64
- * 
  */
 
 namespace HIK_Set
@@ -188,9 +187,9 @@ namespace HIK_Set
         // Logging to file
         void Log(string s)
         {
-            try { 
-                using (StreamWriter sw = File.AppendText(appName+".log"))
-                    sw.WriteLine(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName+"\t"+Environment.UserName+"\t"+"\t"+s);
+            try {
+                using (StreamWriter sw = File.AppendText(appName + ".log"))
+                    sw.WriteLine(DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t" + "\t" + s);
             }
             catch
             { }
