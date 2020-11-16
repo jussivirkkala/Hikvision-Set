@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HIK-Set")]
-[assembly: AssemblyDescription("Sending preset commands to HIKVISION cameras")]
+[assembly: AssemblyDescription("Sending preset commands to 1/2 HIKVISION camera")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HUS")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HIK-Set")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("@jussivirkkala")]
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.3.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
