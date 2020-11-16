@@ -199,9 +199,7 @@ namespace HIK_Set
         {
             try { 
                 using (StreamWriter sw = File.AppendText(appName+".log"))
-                {
                     sw.WriteLine(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName+"\t"+Environment.UserName+"\t"+"\t"+s);
-                }
             }
             catch
             { }
@@ -229,7 +227,7 @@ namespace HIK_Set
 
                 if (!CHCNetSDK.NET_DVR_Logout(m_lUserID))
                 {
-                    label1.Text += " logout err";
+                    label1.Text += "logout err";
                     Log("logout err");
                     m_lUserID = -1;
                 }
@@ -238,3 +236,5 @@ namespace HIK_Set
 
     }
 }
+
+// End
