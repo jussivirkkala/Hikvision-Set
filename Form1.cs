@@ -101,30 +101,34 @@ namespace HIK_Set
                         row += 1;
                         switch (row)
                         {
-                        case 1:
-                            Camera1.DVRIPAddress = line;
-                            break;
-                        case 2:
-                            Camera1.DVRPortNumber = Int16.Parse(line);
-                            break;
-                        case 3:
-                            Camera1.DVRUserName= line;
-                            break;
-                        case 4:
-                            Camera1.DVRPassword= line;
-                            break;
-                        case 5:
-                            Camera2.DVRIPAddress = line;
-                            break;
-                        case 6:
-                            Camera2.DVRPortNumber = Int16.Parse(line);
-                            break;
-                        case 7:
-                            Camera2.DVRUserName = line;
-                            break;
-                        case 8:
-                            Camera2.DVRPassword = line;
-                            break;
+                            case 1:
+                                Camera1.DVRIPAddress = line;
+                                break;
+                            case 2:
+                                Camera1.DVRPortNumber = Int16.Parse(line);
+                                break;
+                            case 3:
+                                Camera1.DVRUserName= line;
+                                break;
+                            case 4:
+                                Camera1.DVRPassword= line;
+                                break;
+                            case 5:
+                                Camera2.DVRIPAddress = line;
+                                break;
+                            case 6:
+                                Camera2.DVRPortNumber = Int16.Parse(line);
+                                break;
+                            case 7:
+                                Camera2.DVRUserName = line;
+                                break;
+                            case 8:
+                                Camera2.DVRPassword = line;
+                                break;
+                            case 9:
+                                Point p = new Point(500, 500);
+                                // this.Location = p;
+                                break;
                         }
                     }
                 }
@@ -224,6 +228,11 @@ namespace HIK_Set
                     m_lUserID = -1;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
