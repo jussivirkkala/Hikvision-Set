@@ -15,7 +15,7 @@ It is based on https://www.hikvision.com/en/support/download/sdk/device-network-
  HCNetSDK.dll
  HCNetSDKCom\
  ```
- Visual Studio 2019 16.8.1 was used to compile this for x64 and .NET4.5. You can download hole project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, username, password) in HIK-Set.ini.
+ Visual Studio 2019 version 16.8.1 was used to compile this for x64 and .NET4.5. You can download hole project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, username, password) in HIK-Set.ini.
 ```
 # Camera 1
 192.168.106.5
@@ -28,6 +28,6 @@ password
 admin
 password
 ```
- You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is also created.
+ In .ini all rows starting with # are ignored. If you only have one camera set port number to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is created. When application is closed Auto mode command is transmitted.
 
 Please provide feedback by making an issue or through tweet https://twitter.com/jussivirkkala.
