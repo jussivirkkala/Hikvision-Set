@@ -25,10 +25,8 @@ using System.Windows.Forms;
  * 
  */
 
-
 namespace HIK_Set
 {
-
     public partial class Form1 : Form
     {
         // On top
@@ -51,15 +49,12 @@ namespace HIK_Set
             public string DVRUserName;
             public string DVRPassword;
         }
-
         Camera Camera1;
         Camera Camera2;
 
-
-        // HIKVision
+        // Hikvision
         private Int32 m_lUserID = -1;
         private bool m_bInitSDK = false;
-
         CHCNetSDK.REALDATACALLBACK RealData = null;
         public CHCNetSDK.NET_DVR_PTZPOS m_struPtzCfg;
 
@@ -79,9 +74,7 @@ namespace HIK_Set
             Application.Run(new Form1());
         }
 
-
         string appName;
-
         private void Form1_Load(object sender, EventArgs e)
         {
             // Always on top
@@ -95,7 +88,7 @@ namespace HIK_Set
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
 
             // Load file
-            if (!File.Exists(this.Text + ".ini"))
+            if (!File.Exists(appName + ".ini"))
             {
                 MessageBox.Show("Missing "+appName+".ini", appName);
             }
@@ -136,7 +129,6 @@ namespace HIK_Set
                         }
                     }
                 }
-
             }
         }
 
@@ -145,7 +137,6 @@ namespace HIK_Set
             radioButton3.Checked = true;
             Log("Closing");
         }
-
 
         private void SendPreset(UInt32 Code)
         {
@@ -163,7 +154,7 @@ namespace HIK_Set
             if (Camera2.DVRPortNumber > 0)
             {
                 Log("Camera2");
-                label1.Text += " Cam2: ";
+                label1.Text += "Cam2: ";
                 Log(Code.ToString());
                 Preset(Camera2, Code);
             }
@@ -171,7 +162,6 @@ namespace HIK_Set
             radioButton2.Enabled = true;
             radioButton3.Enabled = true;
         }
-
 
         // Day
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -195,6 +185,7 @@ namespace HIK_Set
                 SendPreset(46);
         }
 
+        // Logging to file
         void Log(string s)
         {
             try { 
@@ -205,6 +196,8 @@ namespace HIK_Set
             { }
 
         }
+
+        // Sending preset to camera
         private void Preset(Camera Camera, UInt32 PreSetNo)
         { 
             CHCNetSDK.NET_DVR_DEVICEINFO_V30 DeviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
@@ -212,14 +205,14 @@ namespace HIK_Set
             m_lUserID = CHCNetSDK.NET_DVR_Login_V30(Camera.DVRIPAddress, Camera.DVRPortNumber, Camera.DVRUserName, Camera.DVRPassword, ref DeviceInfo);
             if (m_lUserID < 0)
             {
-                label1.Text += "login err";
+                label1.Text += "login err ";
                 Log("login err");
             }
             else
             {
                 if (!CHCNetSDK.NET_DVR_PTZPreset_Other(m_lUserID, 1, CHCNetSDK.GOTO_PRESET, (UInt32)(PreSetNo)))
                 {
-                    label1.Text += "set err";
+                    label1.Text += "set err "; 
                     Log("set err");
                 }
                 else
@@ -227,13 +220,12 @@ namespace HIK_Set
 
                 if (!CHCNetSDK.NET_DVR_Logout(m_lUserID))
                 {
-                    label1.Text += "logout err";
+                    label1.Text += "logout err ";
                     Log("logout err");
                     m_lUserID = -1;
                 }
             }
         }
-
     }
 }
 
