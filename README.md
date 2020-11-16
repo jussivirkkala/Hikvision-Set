@@ -1,4 +1,4 @@
-# Hikvsion-Set
+# Hikvision-Set
 
 Hik-Set is a simple utility to change Day/Night/Auto mode of 1/2 Hikvision camera. 
 
