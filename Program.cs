@@ -16,6 +16,7 @@ namespace HIK_Set
         [STAThread]
         static void Main()
         {
+            // Only single instance
             string appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             bool createdNew;
             mutex = new Mutex(true, appName, out createdNew);
