@@ -1,7 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-
-
 namespace HIK_Set
 {
 	/// <summary>
