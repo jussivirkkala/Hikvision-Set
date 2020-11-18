@@ -358,3 +358,4 @@ bin/log.txt
 bin/HIK-Set.exe.manifest
 bin/HIK-Set.application
 bin/app.publish/HIK-Set.exe
+bin/HIK-Set.exe.config
