@@ -357,3 +357,4 @@ bin/KameraSäätö-1.0.ini
 bin/log.txt
 bin/HIK-Set.exe.manifest
 bin/HIK-Set.application
+bin/app.publish/HIK-Set.exe
