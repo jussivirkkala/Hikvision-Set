@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,9 @@ using System.Windows.Forms;
  * @jussivirkkala
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
- * 
+ *
+ * 2020-11-19 1.1.2 Log with fewer rows
+ * 2020-11-19 1.1.1 Logging version, IP and port
  * 2020-11-16 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log
  * 2020-11-12 1.0.3 Application already running
  * 2020-11-10 1.0.2 opacity
@@ -80,9 +83,8 @@ namespace HIK_Set
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
             appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             this.Text = appName;
-            this.Opacity = .95;
-            Log("Opening");
-
+            this.Opacity = .01; // .95;
+            Log("Version: "+ FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
 
@@ -103,9 +105,11 @@ namespace HIK_Set
                         {
                             case 1:
                                 Camera1.DVRIPAddress = line;
+                                // Log("IP1: " + line);
                                 break;
                             case 2:
                                 Camera1.DVRPortNumber = Int16.Parse(line);
+                                // Log("Port1: " + line);
                                 break;
                             case 3:
                                 Camera1.DVRUserName= line;
@@ -115,9 +119,11 @@ namespace HIK_Set
                                 break;
                             case 5:
                                 Camera2.DVRIPAddress = line;
+                                // Log("IP2: " + line);
                                 break;
                             case 6:
                                 Camera2.DVRPortNumber = Int16.Parse(line);
+                                // Log("Port2: " + line);
                                 break;
                             case 7:
                                 Camera2.DVRUserName = line;
@@ -126,7 +132,7 @@ namespace HIK_Set
                                 Camera2.DVRPassword = line;
                                 break;
                             case 9:
-                                Point p = new Point(500, 500);
+                                // Point p = new Point(500, 500);
                                 // this.Location = p;
                                 break;
                         }
@@ -149,16 +155,14 @@ namespace HIK_Set
             radioButton3.Enabled = false;
             if (Camera1.DVRPortNumber > 0)
             {
-                Log("Camera1");
                 label1.Text += "Cam1: ";
-                Log(Code.ToString());
+                Log("Camera1\t"+Code.ToString());
                 Preset(Camera1, Code);
             }
             if (Camera2.DVRPortNumber > 0)
             {
-                Log("Camera2");
                 label1.Text += "Cam2: ";
-                Log(Code.ToString());
+                Log("Camera2\t"+Code.ToString());
                 Preset(Camera2, Code);
             }
             radioButton1.Enabled = true;
@@ -219,7 +223,7 @@ namespace HIK_Set
                     Log("set err");
                 }
                 else
-                    label1.Text += "ok";
+                    label1.Text += "ok ";
 
                 if (!CHCNetSDK.NET_DVR_Logout(m_lUserID))
                 {
@@ -230,10 +234,6 @@ namespace HIK_Set
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 
