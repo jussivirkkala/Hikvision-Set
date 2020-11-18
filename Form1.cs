@@ -19,12 +19,12 @@ using System.Windows.Forms;
  * V6.1.6.3_build20200925
  *
  * 2020-11-19 1.1.2 Log with fewer rows
- * 2020-11-19 1.1.1 Logging version, IP and port
+ * 2020-11-18 1.1.1 Log version, IP and port
  * 2020-11-16 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log
  * 2020-11-12 1.0.3 Application already running
- * 2020-11-10 1.0.2 opacity
- * 2020-11-10 1.0.1 git
- * 2020-11-08 1.0.0 .NET 4.5, allow unsafe code, Platform x64
+ * 2020-11-10 1.0.2 Opacity
+ * 2020-11-10 1.0.1 Git
+ * 2020-11-08 1.0.0 .NET 4.5, allow unsafe code, platform x64
  */
 
 namespace HIK_Set
@@ -62,11 +62,14 @@ namespace HIK_Set
 
         public Form1()
         {
+            appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            Log("Version: " + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
             InitializeComponent();
              m_bInitSDK = CHCNetSDK.NET_DVR_Init();
             if (m_bInitSDK == false)
             {
                 label1.Text = "SDK error";
+                Log("SDK error");
             }
         }
 
@@ -81,10 +84,8 @@ namespace HIK_Set
         {
             // Always on top
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
-            appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             this.Text = appName;
-            this.Opacity = .01; // .95;
-            Log("Version: "+ FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
+            this.Opacity = .95;
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
 
@@ -156,13 +157,13 @@ namespace HIK_Set
             if (Camera1.DVRPortNumber > 0)
             {
                 label1.Text += "Cam1: ";
-                Log("Camera1\t"+Code.ToString());
+                // Log("Camera1\t"+Code.ToString());
                 Preset(Camera1, Code);
             }
             if (Camera2.DVRPortNumber > 0)
             {
                 label1.Text += "Cam2: ";
-                Log("Camera2\t"+Code.ToString());
+                // Log("Camera2\t"+Code.ToString());
                 Preset(Camera2, Code);
             }
             radioButton1.Enabled = true;
@@ -197,7 +198,7 @@ namespace HIK_Set
         {
             try {
                 using (StreamWriter sw = File.AppendText(appName + ".log"))
-                    sw.WriteLine(DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t" + "\t" + s);
+                    sw.WriteLine(DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t"  + s);
             }
             catch
             { }
@@ -213,22 +214,24 @@ namespace HIK_Set
             if (m_lUserID < 0)
             {
                 label1.Text += "login err ";
-                Log("login err");
+                Log(Camera.DVRIPAddress+ "\tlogin err");
             }
             else
             {
                 if (!CHCNetSDK.NET_DVR_PTZPreset_Other(m_lUserID, 1, CHCNetSDK.GOTO_PRESET, (UInt32)(PreSetNo)))
                 {
                     label1.Text += "set err "; 
-                    Log("set err");
+                    Log(Camera.DVRIPAddress + "\tset err");
                 }
                 else
+                {
                     label1.Text += "ok ";
-
+                    Log(Camera.DVRIPAddress + "\t" + PreSetNo.ToString());
+                }
                 if (!CHCNetSDK.NET_DVR_Logout(m_lUserID))
                 {
                     label1.Text += "logout err ";
-                    Log("logout err");
+                    Log(Camera.DVRIPAddress+ "\tlogout err");
                     m_lUserID = -1;
                 }
             }
