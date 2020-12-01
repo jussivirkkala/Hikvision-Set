@@ -18,13 +18,15 @@ using System.Windows.Forms;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
- * 2020-11-19 1.1.2 Log with fewer rows
- * 2020-11-18 1.1.1 Log version, IP and port
- * 2020-11-16 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log
- * 2020-11-12 1.0.3 Application already running
- * 2020-11-10 1.0.2 Opacity
- * 2020-11-10 1.0.1 Git
- * 2020-11-08 1.0.0 .NET 4.5, allow unsafe code, platform x64
+ * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings
+ *  if exist.
+ * 2020-11-19 1.1.2 Log with fewer rows.
+ * 2020-11-18 1.1.1 Log version, IP and port.
+ * 2020-11-16 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log.
+ * 2020-11-12 1.0.3 Application already running.
+ * 2020-11-10 1.0.2 Opacity.
+ * 2020-11-10 1.0.1 Git.
+ * 2020-11-08 1.0.0 .NET 4.5, allow unsafe code, platform x64.
  */
 
 namespace HIK_Set
@@ -89,6 +91,7 @@ namespace HIK_Set
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
 
+
             // Load file
             if (!File.Exists(appName + ".ini"))
             {
@@ -97,8 +100,13 @@ namespace HIK_Set
             else
             {
                 int row = 0;
-                foreach (string line in File.ReadLines(this.Text + ".ini"))
-                {
+                // 2020-12-01 Look for -computername.ini
+                string s=appName+".ini";
+                if (File.Exists(appName + "-" + Environment.MachineName + ".ini"))
+                    s = appName + "-"+Environment.MachineName + ".ini";
+
+                 foreach (string line in File.ReadLines(s))
+                    {
                     if (!line.StartsWith("#"))
                     {
                         row += 1;
@@ -194,11 +202,12 @@ namespace HIK_Set
         }
 
         // Logging to file
+        // 2020-11-29 Machinename in log file.
         void Log(string s)
         {
             try {
-                using (StreamWriter sw = File.AppendText(appName + ".log"))
-                    sw.WriteLine(DateTime.Now.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t"  + s);
+                using (StreamWriter sw = File.AppendText(appName + "-"+Environment.MachineName + ".log"))
+                    sw.WriteLine(DateTime.Now.ToString(@"yyyy-MM-ddTHH\:mm\:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t"  + s);
             }
             catch
             { }
