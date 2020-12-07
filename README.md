@@ -25,7 +25,7 @@ public static extern bool NET_DVR_Init();
  HCNetSDKCom\HCCoreDevCfg.dll
  HCNetSDKCom\HCPreview.dll
  ```
- Visual Studio 2019 version 16.8.1 was used to compile this for x64 and .NET4.5 (you must have it installed). You can download project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, username, port,password) in HIK-Set.ini.
+ Visual Studio 2019 version 16.8.1 was used to compile this for x64 and .NET4.5 (you must have it installed). You can download project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
 ```
 # Camera 1
 192.168.106.5
