@@ -1,6 +1,6 @@
 # Hikvision-Set
 
-Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camera. Used for controlling day/night mode of https://stratuseeg.com/ cameras. NO RESPONSIBILIY TAKEN FOR USE!
+Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camera. Used for controlling day/night mode of https://stratuseeg.com/ cameras. NO RESPONSIBILITY TAKEN FOR USE!
 
 - 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings if exist.
 - 2020-11-19 1.2.0 Log with fewer rows.
