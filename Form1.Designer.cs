@@ -91,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 68);
+            this.label1.Location = new System.Drawing.Point(12, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 3;
@@ -99,20 +99,21 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
+            this.radioButton4.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.radioButton4.Checked = true;
             this.radioButton4.Location = new System.Drawing.Point(300, 20);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(76, 29);
+            this.radioButton4.Size = new System.Drawing.Size(29, 49);
             this.radioButton4.TabIndex = 0;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Test";
+            this.radioButton4.Text = "T";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 108);
+            this.ClientSize = new System.Drawing.Size(295, 105);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton3);
