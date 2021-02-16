@@ -18,7 +18,8 @@ using System.Windows.Forms;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
- * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings
+ * 2020-12-18 1.1.4 Testing NumLock indicator.
+ * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings  
  *  if exist.
  * 2020-11-19 1.1.2 Log with fewer rows.
  * 2020-11-18 1.1.1 Log version, IP and port.
@@ -81,6 +82,17 @@ namespace HIK_Set
             Application.Run(new Form1());
         }
 
+        // 2020-12-18 
+        void Application_Idle(object sender, EventArgs e)
+        {
+            // if (Control.IsKeyLocked(Keys.CapsLock))
+            // else
+        }
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            Application.Idle -= Application_Idle;
+            base.OnFormClosed(e);
+        }
         string appName;
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -88,8 +100,10 @@ namespace HIK_Set
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
             this.Text = appName;
             this.Opacity = .95;
+            // this.TransparencyKey = Form.DefaultBackColor;
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
+            Application.Idle += Application_Idle;
 
 
             // Load file
