@@ -82,17 +82,17 @@ namespace HIK_Set
             Application.Run(new Form1());
         }
 
-        // 2020-12-18 
+        // 2020-12-18 Testing NumLock functions
         void Application_Idle(object sender, EventArgs e)
         {
             // if (Control.IsKeyLocked(Keys.CapsLock))
-            // else
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             Application.Idle -= Application_Idle;
             base.OnFormClosed(e);
         }
+
         string appName;
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -100,11 +100,9 @@ namespace HIK_Set
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
             this.Text = appName;
             this.Opacity = .95;
-            // this.TransparencyKey = Form.DefaultBackColor;
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
             Application.Idle += Application_Idle;
-
 
             // Load file
             if (!File.Exists(appName + ".ini"))
@@ -155,6 +153,7 @@ namespace HIK_Set
                                 Camera2.DVRPassword = line;
                                 break;
                             case 9:
+                                // Testing default location
                                 // Point p = new Point(500, 500);
                                 // this.Location = p;
                                 break;
