@@ -2,6 +2,13 @@
 
 Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camera. Used for controlling day/night mode of https://stratuseeg.com/ cameras. NO RESPONSIBILITY TAKEN FOR USE!
 
+## Possible future iterations:
+
+- Location from settings.
+- Turn Auto on startup. 
+
+## Version history
+
 - 2021-02-16 Changed version to correct 1.1.4. Compiled with Visual Studio 16.8.5. Renamed repository as Hikvision instead of HikVision-Set.
 - 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings if exist.
 - 2020-11-19 1.1.2 Log with fewer rows.
@@ -26,7 +33,11 @@ ssleay32.dll
 HCNetSDKCom\HCCoreDevCfg.dll
 HCNetSDKCom\HCPreview.dll
 ```
-Visual Studio 2019 version 16.8.1 was used to compile this for x64 and .NET4.5 (you must have it installed). You can download project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
+Visual Studio 2019 version 16.8.1 was used to compile this for x64 and .NET4.5 (you must have it installed). 
+
+## Install
+
+You can download project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
 ```
 # Camera 1
 192.168.106.5
@@ -42,3 +53,5 @@ password
  In .ini all rows starting with # are ignored. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
 
 Tested with DS-2DE2204IW-DE3 https://www.hikvision.com/en/products/IP-Products/PTZ-Cameras/Value-Series/DS-2DE2204IW-DE3-W/ (see manual from there) with V5.6.11 build 190416 with Stratus software. Please provide feedback by making an issue or through tweet https://twitter.com/jussivirkkala.
+
+End
