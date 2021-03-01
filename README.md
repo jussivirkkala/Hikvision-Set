@@ -4,9 +4,6 @@ Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camer
 
 ## Possible future versions:
 
-- Location from settings.
-- Turn Auto on startup. 
-
 ## Version history
 
 - 2021-03-01 1.2.0 Option to set location. Start with Auto. Compiled with Visual Studio 16.8.6. No ClicOnce sign.
@@ -25,7 +22,7 @@ It is based on https://www.hikvision.com/en/support/download/sdk/device-network-
 public static extern bool NET_DVR_Init();
 ...
 ```
-All necessary DLLs (6.1.6.3 and libeay, ssleay 1.0.2.20) from SKDs\lib are included in project \bin folder
+All necessary DLLs (6.1.6.3 and libeay, ssleay 1.0.2.20) from SKDs\lib are included in project \bin folder. Stratus is using DLLs 6.1.4.6. 
 ```
 HCCore.dll
 HCNetSDK.dll
