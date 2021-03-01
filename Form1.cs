@@ -18,6 +18,7 @@ using System.Windows.Forms;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
+ * 2021-02-28 1.2.0 Default location. 
  * 2020-12-18 1.1.4 Testing NumLock indicator.
  * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings  
  *  if exist.
@@ -85,7 +86,7 @@ namespace HIK_Set
         // 2020-12-18 Testing NumLock functions
         void Application_Idle(object sender, EventArgs e)
         {
-            // if (Control.IsKeyLocked(Keys.CapsLock))
+            // label1.Text = Control.IsKeyLocked(Keys.CapsLock).ToString();
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
@@ -117,7 +118,8 @@ namespace HIK_Set
                 if (File.Exists(appName + "-" + Environment.MachineName + ".ini"))
                     s = appName + "-"+Environment.MachineName + ".ini";
 
-                 foreach (string line in File.ReadLines(s))
+                int x=0, y=0; 
+                foreach (string line in File.ReadLines(s))
                     {
                     if (!line.StartsWith("#"))
                     {
@@ -126,11 +128,9 @@ namespace HIK_Set
                         {
                             case 1:
                                 Camera1.DVRIPAddress = line;
-                                // Log("IP1: " + line);
                                 break;
                             case 2:
                                 Camera1.DVRPortNumber = Int16.Parse(line);
-                                // Log("Port1: " + line);
                                 break;
                             case 3:
                                 Camera1.DVRUserName= line;
@@ -140,11 +140,9 @@ namespace HIK_Set
                                 break;
                             case 5:
                                 Camera2.DVRIPAddress = line;
-                                // Log("IP2: " + line);
                                 break;
                             case 6:
                                 Camera2.DVRPortNumber = Int16.Parse(line);
-                                // Log("Port2: " + line);
                                 break;
                             case 7:
                                 Camera2.DVRUserName = line;
@@ -153,13 +151,24 @@ namespace HIK_Set
                                 Camera2.DVRPassword = line;
                                 break;
                             case 9:
-                                // Testing default location
-                                // Point p = new Point(500, 500);
-                                // this.Location = p;
+                                // 2020-02-28 Default location
+                                x = Int16.Parse(line);
                                 break;
+                            case 10:
+                                y = Int16.Parse(line);
+                                if ((x>0) && (y>0))
+                                { 
+                                    Point p = new Point(x,y);
+                                    this.Location = p;
+                                }
+                                break;
+
                         }
                     }
+
                 }
+                // 2020-02-28
+                radioButton3.Checked = true;
             }
         }
 
@@ -178,13 +187,11 @@ namespace HIK_Set
             if (Camera1.DVRPortNumber > 0)
             {
                 label1.Text += "Cam1: ";
-                // Log("Camera1\t"+Code.ToString());
                 Preset(Camera1, Code);
             }
             if (Camera2.DVRPortNumber > 0)
             {
                 label1.Text += "Cam2: ";
-                // Log("Camera2\t"+Code.ToString());
                 Preset(Camera2, Code);
             }
             radioButton1.Enabled = true;
