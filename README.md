@@ -47,6 +47,9 @@ password
 8000
 admin
 password
+# Location x, y. Is omitted or not >0 then center of screen
+200
+100
 ```
  In .ini all rows starting with # are ignored. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
 
