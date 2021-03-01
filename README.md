@@ -35,7 +35,7 @@ Visual Studio 2019 version 16.8.1 was used to compile this for x64 and .NET4.5 (
 
 ## Install
 
-You can download project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip) and start HIK-Set.exe from unzipped bin folder. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
+You can download project also as zip from https://github.com/jussivirkkala/Hikvision-Set/archive/main.zip and start HIK-Set.exe from unzipped bin folder. You can download also certain release https://github.com/jussivirkkala/Hikvision/releases/tag/v1.2.0.zip. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
 ```
 # Camera 1
 192.168.106.5
@@ -48,7 +48,7 @@ password
 admin
 password
 # Location x, y. Is omitted or not >0 then center of screen
-200
+
 100
 ```
  In .ini all rows starting with # are ignored. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
