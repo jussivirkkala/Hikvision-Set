@@ -18,7 +18,8 @@ using System.Windows.Forms;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
- * 2021-02-28 1.2.0 Default location. 
+ * 2021-03-14 v1.2.1 Option to set title. Compiled with Visual Studio 16.9.1.
+ * 2021-03-01 v1.2.0 Option to set location. Start with Auto selected. Compiled with Visual Studio 16.8.6. No ClicOnce sign.
  * 2020-12-18 1.1.4 Testing NumLock indicator.
  * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings  
  *  if exist.
@@ -162,7 +163,9 @@ namespace HIK_Set
                                     this.Location = p;
                                 }
                                 break;
-
+                            case 11:
+                                this.Text = line;
+                                break;
                         }
                     }
 
