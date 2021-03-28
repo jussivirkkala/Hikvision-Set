@@ -8,7 +8,7 @@ Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camer
 ## Version history
 - 2021-03-27 v1.2.2 Trim line. Compiled with Visual Studio 16.9.2.
 - 2021-03-14 v1.2.1 Option to set title. Compiled with Visual Studio 16.9.1.
-- 2021-03-01 v1.2.0 Option to set location. Start with Auto selected. Compiled with Visual Studio 16.8.6. No ClicOnce sign.
+- 2021-03-01 v1.2.0 Option to set location. Start with Auto selected. Compiled with Visual Studio 16.8.6. No ClickOnce sign.
 - 2021-02-16 v1.1.4. Compiled with Visual Studio 16.8.5. Renamed repository as Hikvision instead of HikVision-Set.
 - 2020-11-29 v1.1.3 Writing separate log each computer. Using computer specific settings if exist.
 - 2020-11-19 v1.1.2 Log with fewer rows.
@@ -37,7 +37,7 @@ Visual Studio 2019 was used to compile this for x64 and .NET4.5 (you must have i
 
 ## Install
 
-You can download project also as zip from https://github.com/jussivirkkala/Hikvision/archive/main.zip and start HIK-Set.exe from unzipped bin folder. You can download also certain release e.g. https://github.com/jussivirkkala/Hikvision/archive/v1.2.0.zip. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
+Download newest build as zip from https://github.com/jussivirkkala/Hikvision/archive/main.zip and start HIK-Set.exe from unzipped bin folder. You can download also certain release e.g. https://github.com/jussivirkkala/Hikvision/archive/v1.2.0.zip. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
 ```
 # Camera 1
 192.168.106.5
@@ -52,8 +52,10 @@ password
 # Location x, y. Is omitted or not >0 then center of screen
 200
 100
+# Title
+Tile
 ```
- In .ini all rows starting with # are ignored. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
+ In .ini all rows starting with # are ignored. White spaces are trimmed. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
 
 Tested with DS-2DE2204IW-DE3 https://www.hikvision.com/en/products/IP-Products/PTZ-Cameras/Value-Series/DS-2DE2204IW-DE3-W/ (see manual from there) with V5.6.11 build 190416 with Stratus software. Please provide feedback by making an issue or through tweet https://twitter.com/jussivirkkala.
 
