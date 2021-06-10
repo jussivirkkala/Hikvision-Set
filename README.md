@@ -6,6 +6,7 @@ Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camer
 - Defined presets
 
 ## Version history
+- 2021-06-10 v1.2.4 Visual Studio 16.10.1. Security ClickOnce disabled. 
 - 2021-03-27 v1.2.2 Trim line. Compiled with Visual Studio 16.9.2.
 - 2021-03-14 v1.2.1 Option to set title. Compiled with Visual Studio 16.9.1.
 - 2021-03-01 v1.2.0 Option to set location. Start with Auto selected. Compiled with Visual Studio 16.8.6. No ClickOnce sign.
