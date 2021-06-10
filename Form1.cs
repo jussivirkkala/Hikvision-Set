@@ -18,7 +18,7 @@ using System.Windows.Forms;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
- * 2021-06-10 v1.2.4 Visual Studio 16.10.1, Security ClickOnce disabled.
+ * 2021-06-10 v1.2.4 Visual Studio 16.10.1, Security ClickOnce disabled. 
  * 2021-04-21 v1.2.3 Visual Studio 16.9.4
  * 2021-03-27 v1.2.2 Trim line. Compiled with Visual Studio 16.9.2.
  * 2021-03-14 v1.2.1 Option to set title. Compiled with Visual Studio 16.9.1.
