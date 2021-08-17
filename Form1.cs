@@ -12,13 +12,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 /**
  * @jussivirkkala
+ * 
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
- * 2021-06-10 v1.2.4 Visual Studio 16.10.1, Security ClickOnce disabled. 
+ * 2021-08-08 v1.3.0 Timer for displayin time on title. Net 4.5.2. Visual Studio 16.11.0
+ * 2021-06-10 v1.2.4 Security ClickOnce disabled. Visual Studio 16.10.1,  
  * 2021-04-21 v1.2.3 Visual Studio 16.9.4
  * 2021-03-27 v1.2.2 Trim line. Compiled with Visual Studio 16.9.2.
  * 2021-03-14 v1.2.1 Option to set title. Compiled with Visual Studio 16.9.1.
@@ -99,6 +102,22 @@ namespace HIK_Set
         }
 
         string appName;
+        string Caption = "HIK-Set";
+            
+        private DispatcherTimer dispatcherTimer;
+
+
+        // Displaying time
+        void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            try {
+                this.Text = DateTime.Now.ToString(Caption);
+            }
+            catch (Exception)
+            {
+                this.Text = Caption;
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             // Always on top
@@ -108,6 +127,12 @@ namespace HIK_Set
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
             Application.Idle += Application_Idle;
+
+            // 2021-08-08 TImer 
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
+            dispatcherTimer.Start();
 
             // Load file
             if (!File.Exists(appName + ".ini"))
@@ -168,7 +193,7 @@ namespace HIK_Set
                                 }
                                 break;
                             case 11:
-                                this.Text = line;
+                                Caption= line;
                                 break;
                         }
                     }
