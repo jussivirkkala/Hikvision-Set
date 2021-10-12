@@ -20,6 +20,7 @@ using System.Windows.Threading;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
+ * 2021-10-12 v1.4.0 Maximize button, Visual Studio 16.11.4
  * 2021-08-08 v1.3.0 Timer for displayin time on title. Net 4.5.2. Visual Studio 16.11.0
  * 2021-06-10 v1.2.4 Security ClickOnce disabled. Visual Studio 16.10.1,  
  * 2021-04-21 v1.2.3 Visual Studio 16.9.4
@@ -298,6 +299,23 @@ namespace HIK_Set
             }
         }
 
+        // 2021-10-12 Maximized
+
+        bool maximized = false;        
+        private void bMaximize_Click(object sender, EventArgs e)
+        {
+            if (maximized)
+            {
+                bMaximize.Text = "Maximize";
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                bMaximize.Text = "Restore";
+                this.WindowState = FormWindowState.Maximized;
+            }
+            maximized = !maximized;
+        }
     }
 }
 
