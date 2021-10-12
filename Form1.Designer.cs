@@ -55,7 +55,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 13);
+            this.radioButton1.Location = new System.Drawing.Point(7, 10);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(54, 21);
@@ -68,7 +68,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(73, 13);
+            this.radioButton2.Location = new System.Drawing.Point(73, 10);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(62, 21);
@@ -81,7 +81,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(145, 13);
+            this.radioButton3.Location = new System.Drawing.Point(145, 10);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(58, 21);
@@ -94,7 +94,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 45);
+            this.label1.Location = new System.Drawing.Point(8, 90);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 17);
@@ -102,9 +102,9 @@
             // 
             // bMaximize
             // 
-            this.bMaximize.Location = new System.Drawing.Point(9, 79);
+            this.bMaximize.Location = new System.Drawing.Point(6, 40);
             this.bMaximize.Name = "bMaximize";
-            this.bMaximize.Size = new System.Drawing.Size(193, 42);
+            this.bMaximize.Size = new System.Drawing.Size(193, 38);
             this.bMaximize.TabIndex = 4;
             this.bMaximize.Text = "Maximize";
             this.bMaximize.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(216, 132);
+            this.ClientSize = new System.Drawing.Size(207, 118);
             this.Controls.Add(this.bMaximize);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton3);
