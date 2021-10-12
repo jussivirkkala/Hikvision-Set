@@ -148,7 +148,7 @@ namespace HIK_Set
                 if (File.Exists(appName + "-" + Environment.MachineName + ".ini"))
                     s = appName + "-"+Environment.MachineName + ".ini";
 
-                int x=0, y=0; 
+                short x=0, y=0; 
                 foreach (string line1 in File.ReadLines(s))
                     {
                     String line=line1.Trim(); // 2021-03-27
@@ -183,10 +183,10 @@ namespace HIK_Set
                                 break;
                             case 9:
                                 // 2020-02-28 Default location
-                                x = Int16.Parse(line);
+                                Int16.TryParse(line,out x);
                                 break;
                             case 10:
-                                y = Int16.Parse(line);
+                                Int16.TryParse(line, out y);
                                 if ((x>0) && (y>0))
                                 { 
                                     Point p = new Point(x,y);
@@ -196,6 +196,12 @@ namespace HIK_Set
                             case 11:
                                 Caption= line;
                                 break;
+                            case 12:
+                                short h = 0;
+                                Int16.TryParse(line, out h);
+                                if (h > 0) this.Height = h;
+                                break;
+
                         }
                     }
 
