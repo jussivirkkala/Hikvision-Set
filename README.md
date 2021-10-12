@@ -2,10 +2,10 @@
 
 Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camera. Used for controlling day/night mode of https://stratuseeg.com/ cameras. NO RESPONSIBILITY TAKEN FOR USE!
 
-## Possible updates:
-- Defined presets
 
 ## Version history
+- Planned .NET5 version
+- 2021-10-12 v1.4.0 Maximize button, height option. 
 - 2021-08-08 v1.3.0 Displaying time on title. Net 4.5.2. Visual Studio 16.11.0.
 - 2021-06-10 v1.2.4 Visual Studio 16.10.1. Security ClickOnce disabled. 
 - 2021-03-27 v1.2.2 Trim line. Compiled with Visual Studio 16.9.2.
@@ -41,21 +41,24 @@ Visual Studio 2019 was used to compile this for x64 and .NET4.5 (you must have i
 
 Download newest build as zip from https://github.com/jussivirkkala/Hikvision/archive/main.zip and start HIK-Set.exe from unzipped bin folder. You can download also certain release e.g. https://github.com/jussivirkkala/Hikvision/archive/v1.2.0.zip. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
 ```
-# Camera 1
+# Comment line
+# Camera 1, IP, port
 192.168.106.5
 8000
 admin
 password
-# Camera 2
+# Camera 2, If 1 camera use port 0
 192.168.106.6
 8000
 admin
 password
-# Location x, y. Is omitted or not >0 then center of screen
-200
-100
-# Title
-Title
+# Location x, y. If omitted or not >0 then center of screen
+0
+0
+# Title, use e.g. HH:mm:ss. If omitted exe name
+Ti\tle HH:mm:ss
+# Height, 0 default, reduce from 165 to e.g. 110 or 70
+110
 ```
 In .ini all rows starting with # are ignored. White spaces are trimmed. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
 
