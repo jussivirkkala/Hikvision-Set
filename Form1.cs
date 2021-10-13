@@ -20,7 +20,7 @@ using System.Windows.Threading;
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
  *
- * 2021-10-12 v1.4.0 Maximize button, Visual Studio 16.11.4
+ * 2021-10-13 v1.4.1 Maximize button, height option. TryPaser. Visual Studio 16.11.5.
  * 2021-08-08 v1.3.0 Timer for displayin time on title. Net 4.5.2. Visual Studio 16.11.0
  * 2021-06-10 v1.2.4 Security ClickOnce disabled. Visual Studio 16.10.1,  
  * 2021-04-21 v1.2.3 Visual Studio 16.9.4
@@ -161,7 +161,7 @@ namespace HIK_Set
                                 Camera1.DVRIPAddress = line;
                                 break;
                             case 2:
-                                Camera1.DVRPortNumber = Int16.Parse(line);
+                                Int16.TryParse(line, out Camera1.DVRPortNumber);
                                 break;
                             case 3:
                                 Camera1.DVRUserName= line;
@@ -173,7 +173,7 @@ namespace HIK_Set
                                 Camera2.DVRIPAddress = line;
                                 break;
                             case 6:
-                                Camera2.DVRPortNumber = Int16.Parse(line);
+                                Int16.TryParse(line, out Camera2.DVRPortNumber);
                                 break;
                             case 7:
                                 Camera2.DVRUserName = line;
