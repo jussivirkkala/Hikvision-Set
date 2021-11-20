@@ -123,6 +123,9 @@ namespace HIK_Set
         {
             // Always on top
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
+            // this.FormBorderStyle = FormBorderStyle.None;
+            // this.ControlBox = false;
+           
             this.Text = appName;
             this.Opacity = .95;
             // On closing event
