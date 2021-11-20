@@ -23,7 +23,7 @@ namespace HIK_Set
             if (!createdNew)
             {
                 MessageBox.Show("Already running",appName);
-                return;
+                Environment.Exit(1);
             }
 
             Application.EnableVisualStyles();
