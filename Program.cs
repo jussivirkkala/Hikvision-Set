@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HIK_Set
+namespace Hikvision_Set
 {
     static class Program
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HIK_Set.Properties {
+namespace Hikvision_Set.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

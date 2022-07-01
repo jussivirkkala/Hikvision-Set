@@ -1,4 +1,4 @@
-﻿namespace HIK_Set
+﻿namespace Hikvision_Set
 {
     partial class Form1
     {

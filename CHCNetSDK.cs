@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-namespace HIK_Set
+namespace Hikvision_Set
 {
 	/// <summary>
 	/// CHCNetSDK 的摘要说明。

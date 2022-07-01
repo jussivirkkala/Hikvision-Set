@@ -16,10 +16,9 @@ using System.Windows.Threading;
 
 /**
  * @jussivirkkala
- * 
+ * C:\Users\jussi\OneDrive\Tools\Utility\Clock
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
- * 
  * 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display
  * 2022-01-23 v1.5.0 .NET4.8. Visual Studio 16.11.9. 
  * 2021-10-14 v1.4.2 Uncheck Security, Enable ClickOnce security settings.
@@ -41,7 +40,7 @@ using System.Windows.Threading;
  * 2020-11-08 1.0.0 .NET 4.5, allow unsafe code, platform x64.
  */
 
-namespace HIK_Set
+namespace Hikvision_Set
 {
     public partial class Form1 : Form
     {
@@ -77,14 +76,14 @@ namespace HIK_Set
         public Form1()
         {
             appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            string s= "Started\r\n";
-            s += @"https://github.com/jussivirkkala/Hikvision-Set" + "\r\n";
-            s += "Version\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion + "\r\n";
-            s += "OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription + "\r\n";
-            s += "OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture + "\r\n";
-            s += "ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture + "\r\n";
-            s += "Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
-            Log(s);
+            Log( "Started\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).Comments);
+            Log( "Version\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
+            Log( "MachineName\t" + Environment.MachineName);
+            Log( "UserName\t" + Environment.UserName);
+            Log( "OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription);
+            Log( "OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
+            Log( "ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
+            Log( "Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
 
             InitializeComponent();
              m_bInitSDK = CHCNetSDK.NET_DVR_Init();
@@ -281,7 +280,6 @@ namespace HIK_Set
             try {
                 using (StreamWriter sw = File.AppendText(appName + "-" + Environment.MachineName + ".log"))
                     sw.WriteLine(DateTime.Now.ToString(@"yyyy-MM-ddTHH\:mm\:ss.fff") + DateTime.Now.ToString("zzz")+"\t"+s);
-                    //    + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t"  + s);
             }
             catch
             { }
@@ -297,24 +295,24 @@ namespace HIK_Set
             if (m_lUserID < 0)
             {
                 label1.Text += "login err ";
-                Log(Camera.DVRIPAddress+ "\tlogin err");
+                Log("Login error\t" + Camera.DVRIPAddress);
             }
             else
             {
                 if (!CHCNetSDK.NET_DVR_PTZPreset_Other(m_lUserID, 1, CHCNetSDK.GOTO_PRESET, (UInt32)(PreSetNo)))
                 {
                     label1.Text += "set err "; 
-                    Log(Camera.DVRIPAddress + "\tset err");
+                    Log("Set error\t" + Camera.DVRIPAddress);
                 }
                 else
                 {
                     label1.Text += "ok ";
-                    Log(Camera.DVRIPAddress + "\t" + PreSetNo.ToString());
+                    Log("Set: " + PreSetNo.ToString()+"\t" + Camera.DVRIPAddress  );
                 }
                 if (!CHCNetSDK.NET_DVR_Logout(m_lUserID))
                 {
                     label1.Text += "logout err ";
-                    Log(Camera.DVRIPAddress+ "\tlogout err");
+                    Log("Logout error\t"+Camera.DVRIPAddress);
                     m_lUserID = -1;
                 }
             }
