@@ -19,18 +19,19 @@ using System.Windows.Threading;
  * 
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
+ * 
+ * 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display
  * 2022-01-23 v1.5.0 .NET4.8. Visual Studio 16.11.9. 
  * 2021-10-14 v1.4.2 Uncheck Security, Enable ClickOnce security settings.
  * 2021-10-13 v1.4.1 Maximize button, height option. TryPaser. Visual Studio 16.11.5.
- * 2021-08-08 v1.3.0 Timer for displayin time on title. Net 4.5.2. Visual Studio 16.11.0
+ * 2021-08-08 v1.3.0 Timer for displaying time on title. Net 4.5.2. Visual Studio 16.11.0
  * 2021-06-10 v1.2.4 Security ClickOnce disabled. Visual Studio 16.10.1,  
  * 2021-04-21 v1.2.3 Visual Studio 16.9.4
  * 2021-03-27 v1.2.2 Trim line. Compiled with Visual Studio 16.9.2.
  * 2021-03-14 v1.2.1 Option to set title. Compiled with Visual Studio 16.9.1.
  * 2021-03-01 v1.2.0 Option to set location. Start with Auto selected. Compiled with Visual Studio 16.8.6. No ClicOnce sign.
  * 2020-12-18 1.1.4 Testing NumLock indicator.
- * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings  
- *  if exist.
+ * 2020-11-29 1.1.3 Writing separate log each computer. Using computer specific settings if exist.
  * 2020-11-19 1.1.2 Log with fewer rows.
  * 2020-11-18 1.1.1 Log version, IP and port.
  * 2020-11-16 1.1.0 Removed ..\bin from CHCNetSDK, reading .ini, writing .log.
@@ -76,7 +77,15 @@ namespace HIK_Set
         public Form1()
         {
             appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            Log("Version: " + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
+            string s= "Started\r\n";
+            s += @"https://github.com/jussivirkkala/Hikvision-Set" + "\r\n";
+            s += "Version\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion + "\r\n";
+            s += "OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription + "\r\n";
+            s += "OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture + "\r\n";
+            s += "ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture + "\r\n";
+            s += "Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+            Log(s);
+
             InitializeComponent();
              m_bInitSDK = CHCNetSDK.NET_DVR_Init();
             if (m_bInitSDK == false)
@@ -99,21 +108,22 @@ namespace HIK_Set
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
-            Application.Idle -= Application_Idle;
+            // Application.Idle -= Application_Idle;
             base.OnFormClosed(e);
         }
 
         string appName;
         string Caption = "HIK-Set";
             
-        private DispatcherTimer dispatcherTimer;
+        private DispatcherTimer dispatcherClock;
 
 
         // Displaying time
-        void dispatcherTimer_Tick(object sender, EventArgs e)
+        // 2022-07-01 Added 500 ms to display more accurate second
+        void dispatcherClock_Tick(object sender, EventArgs e)
         {
             try {
-                this.Text = DateTime.Now.ToString(Caption);
+                this.Text = DateTime.Now.AddMilliseconds(500).ToString(Caption);
             }
             catch (Exception)
             {
@@ -131,13 +141,13 @@ namespace HIK_Set
             this.Opacity = .95;
             // On closing event
             this.FormClosing += new FormClosingEventHandler(Form1_Closing);
-            Application.Idle += Application_Idle;
+            // Application.Idle += Application_Idle;
 
             // 2021-08-08 TImer 
-            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
-            dispatcherTimer.Start();
+            dispatcherClock = new System.Windows.Threading.DispatcherTimer();
+            dispatcherClock.Tick += new EventHandler(dispatcherClock_Tick);
+            dispatcherClock.Interval = new TimeSpan(0, 0, 0,0,500);
+            dispatcherClock.Start();
 
             // Load file
             if (!File.Exists(appName + ".ini"))
@@ -269,8 +279,9 @@ namespace HIK_Set
         void Log(string s)
         {
             try {
-                using (StreamWriter sw = File.AppendText(appName + "-"+Environment.MachineName + ".log"))
-                    sw.WriteLine(DateTime.Now.ToString(@"yyyy-MM-ddTHH\:mm\:ss.fff") + DateTime.Now.ToString("zzz") + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t"  + s);
+                using (StreamWriter sw = File.AppendText(appName + "-" + Environment.MachineName + ".log"))
+                    sw.WriteLine(DateTime.Now.ToString(@"yyyy-MM-ddTHH\:mm\:ss.fff") + DateTime.Now.ToString("zzz")+"\t"+s);
+                    //    + "\t" + Environment.MachineName + "\t" + Environment.UserName + "\t"  + s);
             }
             catch
             { }
