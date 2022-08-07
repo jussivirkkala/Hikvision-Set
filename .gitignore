@@ -3,3 +3,5 @@ HIK-Set.sln
 bin/app.publish/Hikvision-Set.exe
 bin/HIK-Set.ini
 bin/Hikvision-Set.application
+bin/Hikvision-Set - Copy.ini
+bin/Hikvision-Set.exe.manifest

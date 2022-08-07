@@ -76,14 +76,14 @@ namespace Hikvision_Set
         public Form1()
         {
             appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            Log( "Started\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).Comments);
-            Log( "Version\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
-            Log( "MachineName\t" + Environment.MachineName);
-            Log( "UserName\t" + Environment.UserName);
-            Log( "OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription);
-            Log( "OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
-            Log( "ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
-            Log( "Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
+            Log("\tStarted\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).Comments);
+            Log("\tVersion\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
+            Log("\tMachineName\t" + Environment.MachineName);
+            Log("\tUserName\t" + Environment.UserName);
+            Log("\tOS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription);
+            Log("\tOSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
+            Log("\tProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
+            Log("\tFramework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
 
             InitializeComponent();
              m_bInitSDK = CHCNetSDK.NET_DVR_Init();
