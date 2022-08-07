@@ -19,7 +19,8 @@ using System.Windows.Threading;
  * C:\Users\jussi\OneDrive\Tools\Utility\Clock
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
- * 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display
+ * 2022-07-02 v1.6.2 Visual Studio 16.11.17. 
+ * 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display.       
  * 2022-01-23 v1.5.0 .NET4.8. Visual Studio 16.11.9. 
  * 2021-10-14 v1.4.2 Uncheck Security, Enable ClickOnce security settings.
  * 2021-10-13 v1.4.1 Maximize button, height option. TryPaser. Visual Studio 16.11.5.
@@ -76,14 +77,14 @@ namespace Hikvision_Set
         public Form1()
         {
             appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            Log("\tStarted\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).Comments);
-            Log("\tVersion\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
-            Log("\tMachineName\t" + Environment.MachineName);
-            Log("\tUserName\t" + Environment.UserName);
-            Log("\tOS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription);
-            Log("\tOSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
-            Log("\tProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
-            Log("\tFramework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
+            Log("Started\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).Comments);
+            Log("Version\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
+            Log("MachineName\t" + Environment.MachineName);
+            Log("UserName\t" + Environment.UserName);
+            Log("OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription);
+            Log("OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
+            Log("ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
+            Log("Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
 
             InitializeComponent();
              m_bInitSDK = CHCNetSDK.NET_DVR_Init();
