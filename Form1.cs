@@ -13,13 +13,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using Microsoft.Win32;
+
 
 /**
  * @jussivirkkala
  * C:\Users\jussi\OneDrive\Tools\Utility\Clock
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
- * 2022-07-02 v1.6.2 Visual Studio 16.11.17. 
+ * 2022-08-08 v1.6.3 Build version. Visual Studio 16.11.17. ClickOnce disabled* 
  * 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display.       
  * 2022-01-23 v1.5.0 .NET4.8. Visual Studio 16.11.9. 
  * 2021-10-14 v1.4.2 Uncheck Security, Enable ClickOnce security settings.
@@ -81,7 +83,20 @@ namespace Hikvision_Set
             Log("Version\t" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion);
             Log("MachineName\t" + Environment.MachineName);
             Log("UserName\t" + Environment.UserName);
-            Log("OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription);
+            RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+            var buildNumber = registryKey.GetValue("UBR").ToString();
+            Log("OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription+"."+ buildNumber.ToString());
+            
+
+            //  var buildNumber2 = registryKey.GetValue("UBR").ToString();
+          //  Log("Build\t" + buildNumber.ToString());
+            /*
+                Environment.OSVersion.Version.Major.ToString() + "." +
+                 Environment.OSVersion.ServicePack + "." +
+                 Environment.OSVersion.Version.MajorRevision.ToString() + "." +
+                 Environment.OSVersion.Version.Minor.ToString() + ".");
+            */
+            
             Log("OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
             Log("ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
             Log("Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
