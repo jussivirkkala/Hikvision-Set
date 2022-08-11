@@ -4,7 +4,8 @@ Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camer
 
 
 ## Version history
-- 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display.
+- 2022-08-08 v1.6.3 (.1) ClickOnce disabled. Added build information. Visual Studio 16.11.17.  Tested with Stratus 4.2.
+- 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display.   
 - 2021-01-25 v1.5.0 Visual Studio 16.11.9 and .NET4.8.
 - 2021-11-07 v1.4.1 Visual Studio 16.11.7.
 - 2021-10-12 v1.4.0 Maximize button, height option. 
@@ -21,7 +22,7 @@ Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camer
 
 ![HIK-Set](HIK-Set.png)
 
-It is based on https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/ version V6.1.6.3_build20200925 (Current SDK version V6.1.6.45_build20210302 has not been tested). and sample 1-Preview-PreviewDemo. CHCNetSDK.cs is from SDK. From CHCNetSDK.cs all ..\bin paths are removed:
+It is based on https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/ version V6.1.6.3_build20200925 (Current SDK version V6.1.9.45build20220412 or V6.1.6.45_build20210302 has not been tested). and sample 1-Preview-PreviewDemo. CHCNetSDK.cs is from SDK. From CHCNetSDK.cs all ..\bin paths are removed:
 ```
 ...
 [DllImport(@"HCNetSDK.dll")]
@@ -37,11 +38,11 @@ ssleay32.dll
 HCNetSDKCom\HCCoreDevCfg.dll
 HCNetSDKCom\HCPreview.dll
 ```
-Visual Studio 2019 was used to compile this for x64 and .NET4.5 (you must have it installed). 
+Visual Studio 2019 was used to compile this for x64 and .NET4.8 (you must have it installed). 
 
 ## Install
 
-Download newest build as zip from https://github.com/jussivirkkala/Hikvision/archive/main.zip and start HIK-Set.exe from unzipped bin folder. You can download also certain release e.g. https://github.com/jussivirkkala/Hikvision/archive/v1.2.0.zip. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
+Download newest build as zip from https://github.com/jussivirkkala/Hikvision/archive/main.zip and start HIK-Set.exe from unzipped bin folder. You can download also certain release e.g. https://github.com/jussivirkkala/Hikvision/archive/v1.3.0.zip. Remember first to set correct parameters (IP, port, username, password) in HIK-Set.ini.
 ```
 # Comment line
 # Camera 1, IP, port
@@ -62,8 +63,8 @@ Ti\tle HH:mm:ss
 # Height, 0 default, reduce from 165 to e.g. 110 or 70
 110
 ```
-In .ini all rows starting with # are ignored. White spaces are trimmed. If you only have one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
+In .ini all rows starting with # are ignored. White spaces are trimmed. If you have only one camera set port number of camera 2 to 0. You can also rename HIK-Set.exe and HIK-Set.ini to more descriptive name e.g CameraSet. Log file .log is appended automatically. When application is closed Auto mode command is transmitted. Application stays always on top and has opacity of 5%. Fixed preset commands are: 39 Day mode (IR cut filter in), 40 Night mode (IR cut filter out), 46 Day/Night Auto Mode.
 
-Tested with DS-2DE2204IW-DE3 https://www.hikvision.com/en/products/IP-Products/PTZ-Cameras/Value-Series/DS-2DE2204IW-DE3-W/ (see manual from there) with V5.6.11 build 190416 with Stratus software. Please provide feedback by making an issue or through tweet https://twitter.com/jussivirkkala.
+Tested with DS-2DE2204IW-DE3 https://www.hikvision.com/my/products/IP-Products/PTZ-Cameras/Value-Series/DS-2DE2204IW-DE3-W/ (currently obselete, see manual from there) with V5.6.15 build with Stratus software. E.g. DS-2CD2455FWD-IW (https://www.hikvision.com/mena-en/products/IP-Products/Network-Cameras/Wi-Fi-Series/ds-2cd2455fwd-iw/) is not currently supported. Please provide feedback by making an issue or through tweet https://twitter.com/jussivirkkala.
 
 End
