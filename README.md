@@ -22,14 +22,14 @@ Hik-Set is a simple utility to change Day/Night/Auto mode of 1-2 Hikvision camer
 
 ![HIK-Set](HIK-Set.png)
 
-It is based on https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/ version V6.1.6.3_build20200925 (Current SDK version V6.1.9.4build20220412 or V6.1.6.4_build20210302 has not been tested). and sample 1-Preview-PreviewDemo. CHCNetSDK.cs is from SDK. From CHCNetSDK.cs all ..\bin paths are removed:
+It is based on https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/ version V6.1.6.3_build20200925 (Current SDK version V6.1.9.48_build20230410 or V6.1.6.4_build20210302 has not been tested). and sample 1-Preview-PreviewDemo. CHCNetSDK.cs is from SDK. From CHCNetSDK.cs all ..\bin paths are removed:
 ```
 ...
 [DllImport(@"HCNetSDK.dll")]
 public static extern bool NET_DVR_Init();
 ...
 ```
-All necessary DLLs (6.1.6.3 and libeay, ssleay 1.0.2.20) from SKDs\lib are included in project \bin folder. Stratus is using DLLs 6.1.4.6. 
+All necessary DLLs (6.1.6.3 and libeay, ssleay 1.0.2.20) from SKDs\lib are included in project \bin folder. Stratus 4.2 is using DLLs 6.1.4.6. 
 ```
 HCCore.dll
 HCNetSDK.dll
