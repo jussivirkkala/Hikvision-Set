@@ -18,9 +18,9 @@ using Microsoft.Win32;
 
 /**
  * @jussivirkkala
- * C:\Users\jussi\OneDrive\Tools\Utility\Clock
  * https://www.hikvision.com/en/support/download/sdk/device-network-sdk--for-windows-64-bit-/
  * V6.1.6.3_build20200925
+ * 2024-07-24 v1.7.0 Removed maximize. Visual Studio 17.10.04, .NET Framwork 4.8.04084
  * 2022-08-08 v1.6.3 (.1) Build version. Visual Studio 16.11.17. ClickOnce disabled. 
  * 2022-07-01 v1.6.0 Log computername, username only once with OS information. Added +500 ms to clock display.       
  * 2022-01-23 v1.5.0 .NET4.8. Visual Studio 16.11.9. 
@@ -88,7 +88,6 @@ namespace Hikvision_Set
             var buildNumber = registryKey.GetValue("UBR").ToString();
             var productName = registryKey.GetValue("ProductName").ToString();
             Log("OS\t" + System.Runtime.InteropServices.RuntimeInformation.OSDescription.Trim() + "." + buildNumber.ToString()); 
-            // + " " + productName);           
             Log("OSArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture);
             Log("ProcessArchitecture\t" + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture);
             Log("Framework\t" + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
@@ -231,7 +230,6 @@ namespace Hikvision_Set
                 radioButton3.Checked = true;
             }
         }
-
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             radioButton3.Checked = true;
@@ -291,7 +289,6 @@ namespace Hikvision_Set
             }
             catch
             { }
-
         }
 
         // Sending preset to camera
@@ -315,7 +312,7 @@ namespace Hikvision_Set
                 else
                 {
                     label1.Text += "ok ";
-                    Log("Set: " + PreSetNo.ToString()+"\t" + Camera.DVRIPAddress  );
+                    Log("Set: " + PreSetNo.ToString()+"\t" + Camera.DVRIPAddress );
                 }
                 if (!CHCNetSDK.NET_DVR_Logout(m_lUserID))
                 {
@@ -326,8 +323,9 @@ namespace Hikvision_Set
             }
         }
 
-        // 2021-10-12 Maximized
-
+        // 2024-04-27 Removed maximed option
+        // 2021-10-12 Maximize
+        /*
         bool maximized = false;        
         private void bMaximize_Click(object sender, EventArgs e)
         {
@@ -344,6 +342,7 @@ namespace Hikvision_Set
             }
             maximized = !maximized;
         }
+        */
     }
 }
 
